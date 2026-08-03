@@ -45,12 +45,15 @@ int main(){
     // here we are calling addnumbers by sending the input in the exact order we declared the parameter in the brackets of function addnumber at top
     //int sum will take in the returned value of sum. 
 
-    /*
-        int sum = addnumbers(69, 67);
+    
+    // sum = addnumber(69, 67);
         
-        we can directly put the input inside the brackets as well intead of variable/parameter.
-    */
+    //we can directly put the input inside the brackets as well intead of variable/parameter.
+    
 
     std::cout <<" the sum of both the number is: "<< sum << std::endl;
+    std::cout <<" the sum of both the number is: "<< addnumber(69, 67) << std::endl;
+    // or we can write function and parameter here instead of sum.
+    
     return 0;
 }
