@@ -10,3 +10,6 @@
         std::<<"Hello"<<std::endl;
     }
 */
+
+// comments cant be nested, in other words one comment cant be inside another
+// and use comments wisely and not over do them.
