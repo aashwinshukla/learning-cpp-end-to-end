@@ -40,4 +40,14 @@ cin >> name >> age;
 
 cout << " hello "<< name << " You are " << age << " year old" << endl;
 
+// now what if someone puts their entire name in the input
+// when they give space for their last name it will take input in age and it will crash becasue age is int 
+
+// thats why use 
+std::string full_name;
+
+std::cout<<"Enter your full name: "<< std::endl;
+std::getline(std::cin, full_name);
+
+//now whenever the user put space in the input it is still considered one single input.
 
