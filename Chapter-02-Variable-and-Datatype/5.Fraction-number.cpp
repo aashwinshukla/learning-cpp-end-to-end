@@ -12,3 +12,6 @@
 // size = 12
 // precision = >double
 
+// these are few things you can get from float.
+// (floating point) / 0 = infinity (+/-)
+// 0.0 / 0.0 = NaN
