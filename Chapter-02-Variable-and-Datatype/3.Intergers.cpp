@@ -30,3 +30,11 @@ cout<< "Answer is: "<< ans << endl;
 // general way is as follow: 
 typename variable_name {intializer_value};
 
+// VERY IMP: braced initializer ,ie {}, it will through error when it will see decimal like 2.9 in int.
+// whereas   in functional initializer, ie (), it will give what it can if it see decimal like 2.9 in int. (out put will be 2)
+
+// i above used a = 3 and b = 10 
+// this is called assignment notation. 
+// this also cuts decimal into interger.
+
+// we can use sizeof(int) to know int size that will be 4 byte.
