@@ -30,6 +30,7 @@ cin >> name;
 cout<< "hello "<<name<<" nice meeting you!"<< endl;
 
 // if we want to grab multiple data in one line then, 
+#include <string>
 int age; 
 string name;
 //btw you write std::string name; 
