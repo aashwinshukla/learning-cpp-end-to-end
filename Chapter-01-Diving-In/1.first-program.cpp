@@ -9,7 +9,7 @@ int main(){
     // to compile the code write g++ first-program.cpp -o first-program 
     // to run it , use the compiled .exe file ie, .\first-program.exe
 
-    // the std::endl creates i new line character in other worlds if we write 
+    // the std::endl creates a new line character, in other words if we write 
     std::cout <<"Number 1";
     std::cout << "Number 2";
     // they will be printed on the same line

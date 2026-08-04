@@ -1,54 +1,53 @@
 // std::cout =  printing data to the terminal. 
 // std::cin =   reading data from the terminal. 
 // std::cerr =  printing error to the console. 
-// std::clog =  printing log msg to the console.
+// std::clog =  printing log messages to the console.
 
-#include<iostream>
+#include <iostream>
+#include <string>
 
-// below text helps in writing code
-// now you dont have to write std:: everywhere.
+// using namespace std below helps in writing shorter code.
+// now you don't have to write std:: everywhere.
 using namespace std;
 
-// printing out
-int number {12};
-cout << "The number is: "<< number << endl;
+int main(){
 
-// Error 
-cerr << "std::cerr output : something went wrong" << endl;
+    // printing out
+    int number {12};
+    cout << "The number is: " << number << endl;
 
-// log message
-clog << "std::clog output : there is a log messsage" << endl;
+    // error message
+    cerr << "std::cerr output : something went wrong" << endl;
 
-// taking input ir reading data
+    // log message
+    clog << "std::clog output : there is a log message" << endl;
 
+    // taking input / reading data
+    string name;
+    cout << "Please type your last name: " << endl;
+    cin >> name;
+    cout << "hello " << name << " nice meeting you!" << endl;
 
-int age;
-string name;
-cout << "please type your last Name: "<<endl;
-cin >> name;
+    // if we want to grab multiple data in one line then:
+    int age;
+    string firstname;
+    // btw you write std::string name; 
+    // but since we have "using namespace std" we don't need to.
 
-cout<< "hello "<<name<<" nice meeting you!"<< endl;
+    cout << "Please enter your first name and age, add space between them: " << endl;
+    cin >> firstname >> age;
+    cout << "hello " << firstname << " you are " << age << " years old" << endl;
 
-// if we want to grab multiple data in one line then, 
-#include <string>
-int age; 
-string name;
-//btw you write std::string name; 
-// but since i have using namespace std i have not.
+    // now what if someone puts their entire name in the input?
+    // when they add a space for their last name it will try to put it into age and crash because age is an int.
 
-cout << "Please enter your first name and age, add space between them " << endl;
-cin >> name >> age;
+    // that's why we use std::getline
+    string full_name;
+    cout << "Enter your full name: " << endl;
+    getline(cin, full_name);
 
-cout << " hello "<< name << " You are " << age << " year old" << endl;
+    // now whenever the user puts a space in the input it is still considered one single input.
+    cout << "Hello " << full_name << "!" << endl;
 
-// now what if someone puts their entire name in the input
-// when they give space for their last name it will take input in age and it will crash becasue age is int 
-
-// thats why use 
-std::string full_name;
-
-std::cout<<"Enter your full name: "<< std::endl;
-std::getline(std::cin, full_name);
-
-//now whenever the user put space in the input it is still considered one single input.
-
+    return 0;
+}
