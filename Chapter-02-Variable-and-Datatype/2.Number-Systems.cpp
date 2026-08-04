@@ -7,20 +7,24 @@
 // Binary system 
 /*
     000000 
-    above is eg of binary 
+    above is an example of binary 
     it is representing just zero 
     001000
-    above one shows 16 in binary, but how??
+    above represents 8 in binary, but how??
 
-    the below is representation of value every position hold which we can use in different pattern to represent all the numbers
+    the below is the representation of the value every position holds, which we can use in different patterns to represent all numbers
     32-16-8-4-2-1
-    in other words from right to left value goes from 2 raise to power n (where n is position starting from 0)
-    value continues even after 32 
+    in other words, from right to left, the value goes from 2 raised to the power n (where n is the position starting from 0)
+    the value continues even after 32 
     
+    so 001000:
+    position 3 (value 8) is the only 1, so 001000 = 8
+
     100101
     this represents 37
     (1 × 2⁵) + (0 × 2⁴) + (0 × 2³) + (1 × 2²) + (0 × 2¹) + (1 × 2⁰)
-    each bracket shows calculation of respective position.
+    = 32 + 0 + 0 + 4 + 0 + 1 = 37
+    each bracket shows the calculation of the respective position.
 
 */
 

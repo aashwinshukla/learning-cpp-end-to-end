@@ -1,10 +1,10 @@
-// if we start with 
+// if we declare a variable first
 
 int var1 {23};
 
-// then later we can reassign it to 
+// then later we can reassign it like this (no type needed again, just the name)
 
-int var1 = 80;
+var1 = 80;
 
-// this can be done to all data types
-
+// writing int again would be a redeclaration error.
+// this reassignment works the same way for all data types.

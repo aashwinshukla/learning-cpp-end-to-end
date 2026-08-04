@@ -1,17 +1,19 @@
-// fraction number are also called floating.
+// fractional numbers are also called floating point numbers.
 
-//float 
-// size = 4
-// precision = 7 
+// float
+// size      = 4 bytes
+// precision = ~7 significant digits
 
 // double
-// size = 8
-// precision = 15
+// size      = 8 bytes
+// precision = ~15 significant digits
 
 // long double
-// size = 12
-// precision = >double
+// size      = 12 bytes (or more, depends on the system)
+// precision = more than double
 
-// these are few things you can get from float.
-// (floating point) / 0 = infinity (+/-)
-// 0.0 / 0.0 = NaN
+// prefer double over float in most cases since it's more precise.
+
+// a few special cases with floating point:
+// (floating point) / 0  = infinity (+/-)
+// 0.0 / 0.0             = NaN (Not a Number)

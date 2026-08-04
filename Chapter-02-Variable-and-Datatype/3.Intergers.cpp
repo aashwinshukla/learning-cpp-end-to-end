@@ -1,40 +1,44 @@
-// Int is used to store integers 
-// typically occupies 4 bytes or more in memory
+// int is used to store integers 
+// typically occupies 4 bytes in memory
 
-// variable is named piece of memory 
-// above defination is all you need to know about variable.
+// variable is a named piece of memory 
+// above definition is all you need to know about a variable.
 
- int age {};
-// above we did not put value in variable.
-// you can do this but this will throw garbage value.
+#include <iostream>
+using namespace std;
 
-// dont store fractional number in int because you will loose your part of data 
+int main(){
 
-int ans = 0;
-int a = 3;
-int b = 10;
+    int age {};
+    // above we did not put a value in the variable.
+    // if you leave it uninitialized like this it may hold a garbage value, so always initialize.
 
+    // don't store fractional numbers in int because you will lose the decimal part of the data.
 
-ans = b/a;
-cout<< "Answer is: "<< ans << endl;
+    int ans = 0;
+    int a = 3;
+    int b = 10;
 
-ans = a/b;
-cout<< "Answer is: "<< ans << endl;
+    ans = b/a;
+    cout << "Answer is: " << ans << endl;
+    // output will be 3, the .33 is dropped because int can't store decimals.
 
-// first output will give 3 as the answer and remove .33 from the data beacuse it cant store it.
-// second output will give 0 as the answer and remove .3 from the data because it cant store it. 
+    ans = a/b;
+    cout << "Answer is: " << ans << endl;
+    // output will be 0, the .3 is dropped because int can't store decimals.
 
-// imp: variable should start with alphabets and not number after that you can write anything.
-// variable are case sensitive.
+    // imp: variable names should start with a letter, not a number. after that you can write anything.
+    // variables are case sensitive.
 
-// general way is as follow: 
-typename variable_name {intializer_value};
+    // general syntax:
+    // typename variable_name {initializer_value};
 
-// VERY IMP: braced initializer ,ie {}, it will through error when it will see decimal like 2.9 in int.
-// whereas   in functional initializer, ie (), it will give what it can if it see decimal like 2.9 in int. (out put will be 2)
+    // VERY IMP: braced initializer {} will throw an error if you try to store a decimal like 2.9 in an int.
+    // whereas functional initializer () will silently truncate it (2.9 becomes 2).
+    // assignment notation = also silently truncates decimals.
 
-// i above used a = 3 and b = 10 
-// this is called assignment notation. 
-// this also cuts decimal into interger.
+    // we can use sizeof(int) to check the size of int, which will be 4 bytes.
+    cout << "size of int: " << sizeof(int) << " bytes" << endl;
 
-// we can use sizeof(int) to know int size that will be 4 byte.
+    return 0;
+}
