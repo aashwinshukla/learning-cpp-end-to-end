@@ -24,3 +24,5 @@
 
 */
 
+// There are many more which you can learn like hexa decimal.
+// (this is for C++ coding notes so i will not include them.)
