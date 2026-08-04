@@ -29,8 +29,8 @@ std::cout <<" the sum of both the number is: "<< sum << std::endl;
 
 #include <iostream>
 
-int addnumber(int firstnumber, int secondnumber){
-    int sum = firstnumber + secondnumber;
+int addnumber(int first_para, int second_para){
+    int sum = first_para + second_para;
     return sum;
     //here it returns sum to the main function.
 }
