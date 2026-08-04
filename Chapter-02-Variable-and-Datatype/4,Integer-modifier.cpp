@@ -26,3 +26,8 @@ long long unsigned int variable_name {};
 // this creates 8 bytes size
 
 // all these modification cant work on decimals lile fraction value.
+
+
+// NOTE: using signed and unsigned is not nessecary to store negative int
+// it only helps to specify what you want
+// int num {-300}; wil also work
