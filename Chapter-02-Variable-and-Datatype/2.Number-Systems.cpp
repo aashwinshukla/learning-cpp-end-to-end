@@ -1,7 +1,8 @@
-// decimal system 
+// Decimal system 
 /*
     2371, 964, etc are eg of decimal system, in other words normal system.
 */
+
 
 // Binary system 
 /*
@@ -18,6 +19,8 @@
     
     100101
     this represents 37
-    1 × 2⁵ + 0 × 2⁴ + 0 × 2³ + 1 × 2² + 0 × 2¹ + 1 × 2⁰
+    (1 × 2⁵) + (0 × 2⁴) + (0 × 2³) + (1 × 2²) + (0 × 2¹) + (1 × 2⁰)
+    each bracket shows calculation of respective position.
 
 */
+
