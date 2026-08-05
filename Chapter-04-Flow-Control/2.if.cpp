@@ -14,3 +14,17 @@ if(result == true){
     std::cout<< number2 << " is less than "<< number1 << std::endl;
 }
 
+// we can also use 
+number1 < number2
+// instead of 
+result == true
+
+// we can also use logic to combine few conditions like 
+
+if(green && !police_stop){
+    std::cout << "Go" << std::endl;
+}else{
+    std::cout << "Stop" << std::endl;
+}
+
+
