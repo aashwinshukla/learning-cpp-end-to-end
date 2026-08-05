@@ -1,0 +1,12 @@
+/*
+    1. add
+    2. subtract
+    3. divide
+    4. modulus
+    5. decrement
+    6. multiply
+    7. build in utilities
+    8. formatting
+    9. increment
+    ........
+*/
