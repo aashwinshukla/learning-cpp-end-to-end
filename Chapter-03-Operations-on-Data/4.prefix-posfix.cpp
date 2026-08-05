@@ -1,33 +1,31 @@
-//increment and decrement 
+// increment and decrement
 
-int value {1};
+#include <iostream>
+using namespace std;
 
-value = value + 1; 
-std::cout<<"value is: "<< value<< std::endl;
-// this will give 2 
+int main(){
 
-value = value - 1; 
-std::cout<<"value is: "<< value<< std::endl;
-// this will give 0
+    int value {5};
 
-// we can also use 
-value++
-//or 
-value--
-// this will do the same that happended in the first code we wrote
-//but things changesa a bit 
-std::cout<<"it will stay : "<< value++ << std::endl;
-std::cout<<"now it will be : "<< value << std::endl;
-// is first output it remains 5 but later in second output it turns 6. 
-// this is postfix increment/decrement
+    // longhand way to increment and decrement
+    value = value + 1;
+    cout << "value is: " << value << endl;   // 6
 
-//we can also use 
-++value
-//or 
---value 
-// here when you take output
-std::cout<<"value : "<< ++value << std::endl;
-// here it increase it on the getgo and we will directly get 6.
-//this is prefix increment/decrement
+    value = value - 1;
+    cout << "value is: " << value << endl;   // 5
 
+    // shorthand: postfix increment/decrement
+    // value++ or value--
+    // the output is printed FIRST using the current value, THEN it increments
+    cout << "it will stay : " << value++ << endl;   // prints 5
+    cout << "now it will be: " << value << endl;    // prints 6
+    // this is postfix — increment happens after the expression is evaluated
 
+    // shorthand: prefix increment/decrement
+    // ++value or --value
+    // it increments FIRST, then the output is printed with the new value
+    cout << "value: " << ++value << endl;   // prints 7
+    // this is prefix — increment happens before the expression is evaluated
+
+    return 0;
+}

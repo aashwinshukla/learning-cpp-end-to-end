@@ -1,21 +1,18 @@
-// And opt = &&
+// AND operator = &&
 /*
-    a && b will stay True only when both a and b are true, else false 
+    a && b is true only when BOTH a and b are true, otherwise false.
 */
 
-
-// Or opt = ||
+// OR operator = ||
 /*
-    a || b will stay false only when both a and b are false, else true
+    a || b is false only when BOTH a and b are false, otherwise true.
 */
 
-
-// Not opt = !
+// NOT operator = !
 /*
-    !a will be true if a is false and vice versa 
+    !a is true if a is false, and false if a is true.
 */
 
-//combining these logical opt is possible and is used.
-// but do not forget to use parentheisis
-
-
+// combining these logical operators is possible and very common.
+// always use parentheses to make the intent clear.
+// example: (a && b) || (!c)

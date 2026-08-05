@@ -1,21 +1,12 @@
-// here we will change value using a single small statement '
+// compound operators let us update a variable with a short single statement
 
-int value {45}
+int value {45};
 
-value += 5;
-value -= 5;
-value *= 2;
-value /= 3;
-value %= 11;
+value += 5;   // value is now 50   (same as value = value + 5)
+value -= 5;   // value is now 45   (same as value = value - 5)
+value *= 2;   // value is now 90   (same as value = value * 2)
+value /= 3;   // value is now 30   (same as value = value / 3)
+value %= 11;  // value is now 8    (same as value = value % 11)
 
-// now the above are ways we can change the value continuously without assigning it again to a variable
-
-// first 45 becomes 50 
-// second the 50 becomes 45 
-// third the 45 becomes 90
-// forth the 90 become 30
-// fifth and the last 30 becomes 8
-
-// we kept using new value of value variable which was made using a statement before the one we were in. 
-
-
+// each line uses the result of the previous line as the new value.
+// works the same way for +=, -=, *=, /=, %=

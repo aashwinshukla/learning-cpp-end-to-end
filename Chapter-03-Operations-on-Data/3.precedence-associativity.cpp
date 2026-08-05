@@ -1,14 +1,16 @@
-// if we want to calculte the bigger problem that has multiple operation like
+// if we want to calculate a bigger problem that has multiple operations like
 
 // a + b * c - d/e - f + g
 
-// in above equation we might want to solve different sections in different sequence/order
-// this is wheree precedance and associativity
+// in the above equation we might want to solve different sections in different sequence/order
+// this is where precedence and associativity come in.
 
-// precedance : which opt to do first 
-// associativity : which direction to start solving 
+// precedence   : which operator to do first
+// associativity: which direction to start solving (left to right or right to left)
 
-//so all we have to do /remember is dicision and multiplication comes first and then left to right order.
-// C++ follows these rules and you can find more online about this .
+// all you need to remember: division and multiplication come before addition and subtraction,
+// and within the same level it goes left to right.
+// C++ follows these rules and you can find the full table online.
 
-// we can use parenthesis to make it clear which opt we want todo first.
+// we can use parentheses to make it clear which operation we want to do first.
+// example: (a + b) * c  will add first, then multiply.
