@@ -10,3 +10,5 @@
 
 //so all we have to do /remember is dicision and multiplication comes first and then left to right order.
 // C++ follows these rules and you can find more online about this .
+
+// we can use parenthesis to make it clear which opt we want todo first.
