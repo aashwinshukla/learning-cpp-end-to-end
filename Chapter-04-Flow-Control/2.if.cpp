@@ -28,3 +28,19 @@ if(green && !police_stop){
 }
 
 
+//we can nest the if statent as below 
+
+if(){
+    if(){
+
+    }else{
+
+    }
+}else{
+    if(){
+
+    }
+}
+
+// nested and logical opt both are good method and not confusing .
+
