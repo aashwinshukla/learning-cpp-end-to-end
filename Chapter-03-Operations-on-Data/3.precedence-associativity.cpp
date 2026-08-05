@@ -9,4 +9,4 @@
 // associativity : which direction to start solving 
 
 //so all we have to do /remember is dicision and multiplication comes first and then left to right order.
-// C== follows these rules and you can find more online about this .
+// C++ follows these rules and you can find more online about this .
