@@ -1,5 +1,5 @@
-#include <iostraem>
-using namespace std
+#include <iostream>
+using namespace std;
 
 int main(){
     int number1 {45};
@@ -11,7 +11,7 @@ int main(){
     cout << " camparing both numbers "<< endl;
 
     cout<< boolalpha; // makes bool show up as true/ false instead of 0/1
-
+// stress on using parenthesis
     cout<< "number 1 < number 2: "<< (number1 < number2) << endl;
     cout<< "number 1 > number 2: "<< (number1 > number2) << endl;
     cout<< "number 1 <= number 2: "<< (number1 <= number2) << endl;
