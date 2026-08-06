@@ -20,5 +20,4 @@ int main(){
     // we are able to use it because of <isotream> library
     
     return 0;
-
 }
