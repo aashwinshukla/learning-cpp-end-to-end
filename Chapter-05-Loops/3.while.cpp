@@ -1,23 +1,30 @@
-// now for while loop 
+// while loop syntax:
+// while(condition){ code }
 
-const unsigned int COUNT {10};
+#include <iostream>
+using namespace std;
 
-unsigned int i {0};
+int main(){
 
-while( i < COUNT){
-    std::cout << "I love C++"<< std::endl;
-    ++i;
+    const unsigned int COUNT {10};
+    unsigned int i {0};
+
+    while(i < COUNT){
+        cout << "I love C++" << endl;
+        ++i;
+    }
+
+    // as you can see: just a single condition in the parentheses and the increment inside the body
+    // it checks condition => runs code => increments => repeats
+    // breaks once the condition is false
+
+    // we can also use while(true) for an intentional infinite loop
+    // and break out of it manually with a break statement
+    while(true){
+        cout << "runs once then breaks" << endl;
+        break;
+    }
+    // without break this would run forever
+
+    return 0;
 }
-
-// here as you can see a single condition the parenthesis and increment inside the code itself is all we need to use while loop;
-// it breaks once the condition is false.
-// it checks the condition => runs code => increment => repeat 
-
-// we can also write..
-while(true){
-    //code
-    break;
-}
-
-// here the break statement is what, that stops the loop otherwise it will keep running
-

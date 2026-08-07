@@ -1,34 +1,38 @@
-// lets start with do while loops
+// do while loop syntax:
+// do{ code }while(condition);
 
-const unsigned int COUNT {10};
+#include <iostream>
+using namespace std;
 
-unsigned int i {0};
+int main(){
 
-do{
-    std::cout << "I love C++"<< std::endl;
-    ++i;
-}while(i< COUNT);
+    const unsigned int COUNT {10};
+    unsigned int i {0};
 
-// here the process is a little bit different
-// first it performs the program => check conditions => repeat
-// once conditions are false it will stop 
+    do{
+        cout << "I love C++" << endl;
+        ++i;
+    }while(i < COUNT);
 
-// so lets say...
-const unsigned int COUNT {10};
+    // the order is a little different compared to while:
+    // runs code first => then checks condition => repeats if true
+    // once condition is false it stops
 
-unsigned int i {11};
+    // KEY DIFFERENCE from while loop:
+    // even if the condition is never true, do-while runs at least once
 
-do{
-    std::cout << "I love C++"<< std::endl;
-    ++i;
-}while(i< COUNT);
+    unsigned int j {11};
 
-// here i = 11 
-// in anyother loop that we learned the program would have never started since condition never met 
-// here it performs once..
+    do{
+        cout << "this runs once even though j > COUNT" << endl;
+        ++j;
+    }while(j < COUNT);
 
-//output: I love C++
-// them checks condition which doesnt meet and then loop ends 
+    // j = 11, COUNT = 10 so condition is false from the start
+    // in a regular while loop this would never run
+    // in do-while it runs once, then checks the condition and stops
 
-// which means we atleast get onetime output even ifcondition dont meet.
+    // output: "this runs once even though j > COUNT"
 
+    return 0;
+}
