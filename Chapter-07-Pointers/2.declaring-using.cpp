@@ -17,3 +17,15 @@ std::cout << "p_int (Address in memory) : " << p_int << std::endl;
 
 p_int = &int_var1; // Assign a different address to a pointer is very legal in C++
 // data type has to be same thats the point to remember
+
+
+// derefrencing a pointer 
+
+int* num {};
+int num_data {50};
+num = &num_data;
+
+std::cout << "value: " << *num << std::endl;
+
+// this will give us the value and not the address.
+
