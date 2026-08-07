@@ -1,34 +1,40 @@
-// lets see how to declare and use array.
+// declaring and using arrays
+
+#include <iostream>
 using namespace std;
 
-int score [10];  // array storing 10 integers.
+int main(){
 
-for(size_t i{0}; i<10; i++){
-    cout<< "Score " << i+1 << ": "<< score[i]<<endl;
+    int score[10];  // array storing 10 integers, indices 0 to 9
+
+    // since we didn't assign any values, all elements hold garbage values
+    // always initialize your arrays to avoid this
+
+    // one of the best ways to assign values to an array
+    for(size_t i{0}; i < 10; ++i){
+        score[i] = i * 5;
+    }
+
+    // now print all 10 values
+    for(size_t i{0}; i < 10; ++i){
+        cout << "Score " << i+1 << ": " << score[i] << endl;
+    }
+
+    // indexing starts from 0
+    // score[10] means the array has values at indices 0 to 9
+
+    // we can also assign values upfront
+    double grades[10] {10, 30, 56, 80, 90, 23, 45, 12};
+    // the unassigned ones will automatically be 0
+
+    // you can also omit the size — the compiler figures it out from the data
+    double points[] {10, 30, 56, 80, 90};
+
+    // const array — data can't be changed after declaration
+    const int fixed[] {1, 2, 3, 4, 5};
+
+    // you can also do operations on individual elements
+    // eg: score[0] = score[1] + score[2];
+
+    return 0;
 }
-
-// now this will print out all the 10 value of score stored inside the array score[]
-// thing to notice since we didnt added anything all value will be garbage value 
-
-//btw indexing starts from 0.
-// so when we say score[10] array that means array has value at memory 0 to 9 which we are acessing using i and for loop
-
-for(size_t i{0}; i<10; ++i){
-    score[i] = i * 5;
-}
-
-// I wrote above code so you can add this before printing out the values in array,
-// so you all dont get garbage value 
-// and above is one of the best way to assign value to memory inside the array
-
-
-// we can also write the value/ data before hand 
-double score[10] {10, 30, 56, 80, 90 , 23, 45, 12};
-// the unassigned one will be automatically 0 
-
-// you can also omit the size the ompiler will use data inside the array to know the size
-
-// we can also use const array so data cant be changeed
-// you can also do operation on the element of the array
-
-
