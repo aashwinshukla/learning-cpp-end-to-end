@@ -22,3 +22,13 @@ for(size_t i{0}; i<10; ++i){
 // and above is one of the best way to assign value to memory inside the array
 
 
+// we can also write the value/ data before hand 
+double score[10] {10, 30, 56, 80, 90 , 23, 45, 12};
+// the unassigned one will be automatically 0 
+
+// you can also omit the size the ompiler will use data inside the array to know the size
+
+// we can also use const array so data cant be changeed
+// you can also do operation on the element of the array
+
+
