@@ -1,39 +1,74 @@
-// 1. Check Alphanumeric 
-std::isalnum
-//is what we will use for this manipulation
-//so we can check by....
-cout<< isalnum('C') << endl;
-cout<< isalnum('^') << endl;
+#include <cctype>
+#include <iostream>
+#include <iterator>
+using namespace std;
 
-// for first output return value will be non zero since C is alphanumeric value
-// for seond it will be 0 
+int main(){
+
+    char message[] {"Hello there, how are you? 123"};
+
+    // 1. Check Alphanumeric — isalnum()
+    // returns non-zero if the character is a letter or digit, 0 if not
+    cout << isalnum('C') << endl;   // non-zero (alphanumeric)
+    cout << isalnum('^') << endl;   // 0 (not alphanumeric)
 
 
-// 2. Check Alphabetic 
-std::isalpha
+    // 2. Check Alphabetic — isalpha()
+    // returns non-zero if the character is a letter (a-z or A-Z), 0 if not
+    cout << isalpha('C') << endl;   // non-zero
+    cout << isalpha('3') << endl;   // 0 (digit, not a letter)
 
-// 3. Check Blank
-char message[] {"Hello there, how are you?"};
 
-int blank_count{0};
-for(size_t i{0}; i< size(message); i++){
-    if(std::isblank(message[i])){
-        cout << "Found a blank character at index : [ " << i << " ]"<< endl;
-        ++blank_count;
+    // 3. Check Blank — isblank()
+    // returns non-zero if the character is a space or tab
+    int blank_count {0};
+    for(size_t i{0}; i < size(message); ++i){
+        if(isblank(message[i])){
+            cout << "blank at index : " << i << endl;
+            ++blank_count;
+        }
     }
+    cout << "total blanks : " << blank_count << endl;
+
+
+    // 4. Check Lowercase / Uppercase — islower() and isupper()
+    int lower_count {0};
+    int upper_count {0};
+    for(size_t i{0}; i < size(message); ++i){
+        if(islower(message[i])){
+            ++lower_count;
+        }else if(isupper(message[i])){
+            ++upper_count;
+        }
+    }
+    cout << "lowercase letters : " << lower_count << endl;
+    cout << "uppercase letters : " << upper_count << endl;
+
+
+    // 5. Check Digit — isdigit()
+    // returns non-zero if the character is 0-9
+    int digit_count {0};
+    for(size_t i{0}; i < size(message); ++i){
+        if(isdigit(message[i])){
+            cout << "digit found : " << message[i] << " at index " << i << endl;
+            ++digit_count;
+        }
+    }
+    cout << "total digits : " << digit_count << endl;
+
+
+    // 6. Convert to Lowercase / Uppercase — tolower() and toupper()
+    cout << "original : " << message << endl;
+
+    for(size_t i{0}; i < size(message); ++i){
+        cout << static_cast<char>(tolower(message[i]));
+    }
+    cout << endl;   // hello there, how are you? 123
+
+    for(size_t i{0}; i < size(message); ++i){
+        cout << static_cast<char>(toupper(message[i]));
+    }
+    cout << endl;   // HELLO THERE, HOW ARE YOU? 123
+
+    return 0;
 }
-
-cout << " IN total we found "<< blank_count << "blank characters" << endl;
-
-
-// 4. lowercase/ uppercase
-// similar to blank_count but by using islower() and isupper()
-// use for and nested inside are if else to get both at the same time.
-
-// 5. Check digit 
-// same as above two manipulation but use isdigit() 
-// use for and nested inside are if else to get the count.
-
-// 6. Turn to lowercase / uppercase 
-// use tolower and toupper.
-
