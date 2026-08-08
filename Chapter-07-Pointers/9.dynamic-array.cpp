@@ -19,6 +19,12 @@ delete[] p_students;
 p_students = nullptr;
 
 
+// to see all the value inside on an array you cant just use cout and write the name of the pointer 
+// we will have to use loop
+
+for(auto s : scores){
+    cout << " Scores : " << s << endl;
+}
 
 
 
