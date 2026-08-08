@@ -1,31 +1,40 @@
 // declaring pointers
-int* p_number{};  // can only store an address of a variable of type int 
-double* p_fractional_number{};  // can only store an adress of a variable of type double
 
-// Explicitely initializing to nullptr
+#include <iostream>
+using namespace std;
 
-int* p_number1 {nullptr};
-int* p_fractional_number1 {nullptr};
+int main(){
 
-// all ptr are of same size
+    int* p_number{};          // can only store an address of a variable of type int
+    double* p_fractional{};   // can only store an address of a variable of type double
 
-// ptr symbol (*) can be anywhere between variable and data type left right or center .
-int int_var{43};
-int* p_int{&int_var};  // the adress of operator (&).
+    // explicitly initializing to nullptr (best practice)
+    int* p_number1 {nullptr};
+    double* p_fractional1 {nullptr};
 
-std::cout << "p_int (Address in memory) : " << p_int << std::endl;
+    // all pointers are the same size regardless of the type they point to
+    // (typically 4 bytes on 32-bit, 8 bytes on 64-bit systems)
 
-p_int = &int_var1; // Assign a different address to a pointer is very legal in C++
-// data type has to be same thats the point to remember
+    // the * can be placed anywhere between the type and the variable name
+    // int* p;  int *p;  int * p;  — all mean the same thing
 
+    // address-of operator (&) — gets the address of a variable
+    int int_var {43};
+    int* p_int {&int_var};
 
-// derefrencing a pointer 
+    cout << "p_int (address in memory) : " << p_int << endl;
 
-int* num {};
-int num_data {50};
-num = &num_data;
+    // you can reassign a pointer to a different address — the data type must match
+    int int_var2 {99};
+    p_int = &int_var2;
+    cout << "p_int (new address) : " << p_int << endl;
 
-std::cout << "value: " << *num << std::endl;
+    // dereferencing a pointer — gets the value at the address the pointer holds
+    int num_data {50};
+    int* num {&num_data};
 
-// this will give us the value and not the address.
+    cout << "address : " << num  << endl;   // prints the address
+    cout << "value   : " << *num << endl;   // prints 50
 
+    return 0;
+}

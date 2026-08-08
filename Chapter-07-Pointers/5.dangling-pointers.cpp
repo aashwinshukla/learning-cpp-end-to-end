@@ -1,68 +1,59 @@
-// a pointer that doesnt point to valid memory address. 
-// trying to derefrence and use a dangling pointer will result in undefined behaviour
- using namespace std;
+// a dangling pointer is one that doesn't point to a valid memory address
+// dereferencing it causes undefined behavior — crash, garbage output, or worse
 
-// 1. uninitialized pointer 
+#include <iostream>
+using namespace std;
 
-int *p_number; //Dangling Uninitialzied pointer
+int main(){
 
-cout << endl;
-cout<< "Case 1: Uninitialized pointer: "<< endl;
-cout << "p_number : "<< p_number << endl;
-//cout << "*p_number : " << *p_number << endl;   // CRASH!!!
-
-
-// 2. Deleted pointer
-
-cout << endl;
-cout << "Case 2 : Deleted pointer" << endl;
-int *p_number1 {new int{67}};
-
-cout << "*p_number1 (before delete) : "<< *p_number1 << endl;
-
-delete p_number1;
-
-cout << "*p_number1 (after delete) : " << *p_number1 << endl;
-// reinitialize the released memory frist otherwise program will show undefined behaviour
+    // case 1: uninitialized pointer
+    int* p_number;   // dangling — holds garbage address
+    cout << "p_number : " << p_number << endl;
+    // cout << *p_number << endl;   // CRASH — never dereference an uninitialized pointer
+    // fix: always initialize pointers to nullptr
 
 
-// 3. Multiple pointers pointing to same address
+    // case 2: deleted pointer
+    int* p_number1 {new int{67}};
+    cout << "*p_number1 (before delete) : " << *p_number1 << endl;   // 67
 
-cout<< endl;
-cout << "Case 3. : Multiple pointers pointing to same address :  " << endl;
-
-int *p_number3 {new int {83}};
-int *p_number4 {p_number3};
-
-cout "p_number3 - " << p_number3 << " - " << *p_number3 << endl;
-cout "p_number4 - " << p_number4 << " - " << *p_number4 << endl;
-
-delete p_number3;
-
-// p_number4 points to a deleted memory.
-// Derefrencing it will lead to undefined behaviouir : carsh/ garbage or whatever
-cout "p_number4 - " << p_number4 << " - " << *p_number4 << endl;
+    delete p_number1;
+    p_number1 = nullptr;   // reset after delete — fix for case 2
+    // cout << *p_number1 << endl;   // would crash if not reset to nullptr
 
 
+    // case 3: multiple pointers pointing to the same address
+    int* p_number3 {new int{83}};
+    int* p_number4 {p_number3};   // p_number4 is a slave/observer pointer
 
-// solutions :
-// 1. initiazlize your pointer
-// 2. reset pointers after deleting 
-// 3. for 3rd case make sure the owner pointer in very clear
+    cout << "p_number3 - " << p_number3 << " - " << *p_number3 << endl;
+    cout << "p_number4 - " << p_number4 << " - " << *p_number4 << endl;
 
-// you can also.....
-if (p_number6 != nullptr){
-    cout << "*p_number6 : " << *p_number6 << endl;
+    delete p_number3;
+    p_number3 = nullptr;
+
+    // p_number4 now points to deleted memory — dangling
+    // fix: always check the master pointer before using the slave
+    if(p_number3 != nullptr){
+        cout << "p_number4 - " << p_number4 << " - " << *p_number4 << endl;
+    }
+
+
+    // general null check before dereferencing any pointer
+    int* p_number6 {nullptr};
+    if(p_number6 != nullptr){
+        cout << "*p_number6 : " << *p_number6 << endl;
+    }
+    // pointers can also be used directly as bools
+    if(p_number6){
+        cout << "*p_number6 : " << *p_number6 << endl;
+    }
+
+
+    // solutions summary:
+    // 1. always initialize pointers (to nullptr if not pointing to anything yet)
+    // 2. reset pointers to nullptr after deleting
+    // 3. for multiple pointers to same address, make the ownership clear (master/slave)
+
+    return 0;
 }
-// this will directly avoid the uninitialized pointers
-
-
-// for the 3rd case  make slave and master pointer 
-// like in the example p_number3 is master and p_number4 was slave 
-// therefore....\
-
-if(!(p_number3 == nullptr)){
-    cout "p_number4 - " << p_number4 << " - " << *p_number4 << endl;
-}
-// this will cgheck with master and then run the slave 
-

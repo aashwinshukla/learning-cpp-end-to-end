@@ -1,30 +1,34 @@
-// Arrays allocated on the heap with the new operator. 
-// Can also use the std::nothrow version of new
+// arrays allocated on the heap using new[]
+// you need to know the size at the time of allocation
 
-double *p_salaries {new double[size]};   // garbage value 
+#include <iostream>
+using namespace std;
 
-int *p_students { new(std::nothrow) int[size]{}};   // all initialized to 0
+int main(){
 
-double *p_scores { new(std::nothrow) double[size]{1,2,3,4,5}};     // anything after 5 in will be initialized to 0
+    const size_t size {5};
 
-// releasing memory 
+    double* p_salaries  {new double[size]};                         // garbage values
+    int*    p_students  {new(std::nothrow) int[size]{}};            // all initialized to 0
+    double* p_scores    {new(std::nothrow) double[size]{1,2,3,4,5}};// specified values, rest = 0
 
-delete[] p_scores;
-p_scores = nullptr;
+    // printing — you can't just cout the pointer name for arrays
+    // that just prints the address, so use a loop
+    if(p_scores){
+        for(size_t i{}; i < size; ++i){
+            cout << "score[" << i << "] : " << p_scores[i] << endl;
+        }
+    }
 
-delete[] p_salaries;
-p_salaries = nullptr;
+    // releasing heap array memory — must use delete[] not delete
+    delete[] p_scores;
+    p_scores = nullptr;
 
-delete[] p_students;
-p_students = nullptr;
+    delete[] p_salaries;
+    p_salaries = nullptr;
 
+    delete[] p_students;
+    p_students = nullptr;
 
-// to see all the value inside on an array you cant just use cout and write the name of the pointer 
-// we will have to use loop
-
-for(auto s : scores){
-    cout << " Scores : " << s << endl;
+    return 0;
 }
-
-
-

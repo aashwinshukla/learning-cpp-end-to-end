@@ -1,40 +1,37 @@
-// stack memory = finite memory holds the local variable
-//                the dev isnt in full control of the memory lifetime 
-//                lifetiime is controlled by the scope mechanism
+// stack memory = limited memory, holds local variables
+//                the developer is NOT in full control of its lifetime
+//                lifetime is controlled by scope — variable dies when it goes out of scope
 
-// Heap memory = finite additional memory used when you run out of stack memory 
-//               the dev is in full controll of when the memory is allocated and when its released
-//               lifetime is controlled explicitely through new and delete operators
+// heap memory  = larger pool of memory
+//                the developer IS in full control of when memory is allocated and released
+//                lifetime is controlled explicitly through new and delete operators
 
-// Dynamically allocate memory at run time and make a pointer point to it 
+#include <iostream>
 
-int *p_number{nullptr};
-p_number = new int; // Dynamically allocate space for a space for a single int on the heap 
-                    // This memory belongs to our program from now on.
-                    // The system cant use it for anything else untill we retturn it.
-                    // after this line executes, we will have a valid memeory location allocated
-                    // the size of the allocated memory will be such that it can store the type pointed to by the pointer.
+int main(){
 
-*p_number = 77;  // writing into dynamically allocated memory 
-std::cout << std::endl;
-std::cout << " Dynamically alloacting memeory : "<< std::endl;
-std::cout << "P-number : " << *p_number << std::endl;
+    // dynamically allocating memory at runtime
+    int* p_number {nullptr};
+    p_number = new int;   // allocates space for a single int on the heap
+                          // this memory belongs to our program from this point
+                          // the system can't use it for anything else until we release it
 
-//....
-//....
+    *p_number = 77;       // writing into dynamically allocated memory
+    std::cout << "p_number : " << *p_number << std::endl;   // 77
 
-delete p_number;
-p_number = nullptr;
+    // always delete heap memory when you're done with it
+    delete p_number;
+    p_number = nullptr;   // reset to nullptr after deleting to avoid dangling pointer
 
-// we used it and then relesed it and reinitialized it to nullptr
-
-{
+    // scope example — stack vs heap behavior
     {
-        // any ptr here dies once the code crosses the braces 
-        // this is what happens in stack
-
-        // but if the ptr is in heap then until unless we want to release the memory \
-        // even the braces cant decide wheather memory dies or not 
+        {
+            // any local variable here dies once the code exits these braces (stack)
+            // but heap memory allocated inside here does NOT die with the braces
+            // it stays allocated until you explicitly call delete
+            // forgetting to delete = memory leak
+        }
     }
-}
 
+    return 0;
+}

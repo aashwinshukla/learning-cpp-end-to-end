@@ -1,11 +1,25 @@
-// Null Pointer Safety
-// making sure ptr you are working with ahs valid memory address
+// null pointer safety — making sure a pointer holds a valid address before using it
 
-// you can use if-else statemnets to check and avoid if the pointer = nullptr 
-// and then avoid that pointer 
+#include <iostream>
 
-// we can also directly write in if(p_number) and write code in braces ahead beacuse 
-// pointers can also act as bools
+int main(){
 
-// calling delete on a nullptr is OK
+    int* p_number {nullptr};
 
+    // method 1: explicit comparison
+    if(p_number != nullptr){
+        std::cout << "*p_number : " << *p_number << std::endl;
+    }else{
+        std::cout << "p_number is null, skipping" << std::endl;
+    }
+
+    // method 2: pointer as a bool (nullptr = false, any valid address = true)
+    if(p_number){
+        std::cout << "*p_number : " << *p_number << std::endl;
+    }
+
+    // calling delete on a nullptr is completely safe — nothing happens
+    delete p_number;   // no crash, no problem
+
+    return 0;
+}
