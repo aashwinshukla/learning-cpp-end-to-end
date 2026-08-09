@@ -19,11 +19,13 @@ auto func = [c](){
 };
 
 for(size_t i{}; i<5; ++i){
-    std::cout<< "Outer value : "<< c << std::endl;
+    std::cout<< "inner value : "<< c << std::endl;
     func();
     ++c;
 }
+// inner value keep increasing but outter value stays same  
 // capturing by value : what we have in the lambda function is a copy
-// we can also capture by reference using &c
 
+// we can also capture by reference using &c
+// here both value will change
 
