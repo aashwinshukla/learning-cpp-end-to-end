@@ -1,0 +1,22 @@
+// lambdda function signature
+
+// [capture list] (parameters) -> return type{
+    //function body 
+// };
+
+auto func = [](){
+    std::cout <<"Hello world" << std::endl;
+}
+func();
+// above is the best way to explain the begineers but as we go we will learn more
+
+[](){
+    std::cout <<"Hello world" << std::endl;
+}();
+
+// above way we can directly call the lambda function
+
+[](double a, double b){
+    std::cout << "a + b : "<< (a + b) << std::endl; 
+}(12.1, 5.7);
+
