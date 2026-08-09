@@ -16,3 +16,5 @@
 // this way you will be able to use their context in your 
 // current translation unit
 
+//defination of function can go into a .cpp file 
+// and the function declaration can go in a .h file
