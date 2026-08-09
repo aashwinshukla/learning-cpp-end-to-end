@@ -1,34 +1,48 @@
+// instead of listing every variable in the capture list,
+// you can capture everything in the surrounding scope at once
 
-int c{42};
-//......
-//......
+#include <iostream>
+using namespace std;
 
-auto func = [=](){
-    std::cout << "Outer value : "<< c << std::endl;
-};
+int main(){
 
-for(size_t i{}; i<5; ++i){
-    std::cout<< "inner value : "<< c << std::endl;
-    func();
-    ++c;
+    int c {42};
+    int x {10};
+    int y {20};
+
+    // [=] captures ALL local variables by VALUE
+    auto func_by_value = [=](){
+        cout << "c (copy) : " << c << endl;
+        cout << "x (copy) : " << x << endl;
+    };
+
+    for(size_t i{}; i < 5; ++i){
+        cout << "inner c : " << c << endl;
+        func_by_value();   // always prints original value of c — it's a copy
+        ++c;
+    }
+
+    // reset c for the next example
+    c = 42;
+
+    // [&] captures ALL local variables by REFERENCE
+    auto func_by_ref = [&](){
+        cout << "c (ref)  : " << c << endl;
+        cout << "x (ref)  : " << x << endl;
+    };
+
+    for(size_t i{}; i < 5; ++i){
+        cout << "inner c : " << c << endl;
+        func_by_ref();   // c inside the lambda changes with the outer c
+        ++c;
+    }
+
+    // summary:
+    // [=]  = capture all by value  (copies, originals unaffected)
+    // [&]  = capture all by reference (aliases, both change together)
+    // [x]  = capture only x by value
+    // [&x] = capture only x by reference
+    // mixing is allowed: [=, &x] captures all by value except x by reference
+
+    return 0;
 }
-
-// using = will help take everything outside the scope of lambda function by value 
-
-
-int c{42};
-//......
-//......
-
-auto func = [&](){
-    std::cout << "Outer value : "<< c << std::endl;
-};
-
-for(size_t i{}; i<5; ++i){
-    std::cout<< "inner value : "<< c << std::endl;
-    func();
-    ++c;
-}
-
-// using & will help take everything outside the scope of lambda function by reference
- 
