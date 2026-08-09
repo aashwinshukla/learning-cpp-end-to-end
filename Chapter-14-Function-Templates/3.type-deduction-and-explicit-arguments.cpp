@@ -2,7 +2,6 @@
 #include <string>
 using namespace std;
 
-// template declaration — telling the compiler this function exists before main
 template <typename T> T maximum(T a, T b);
 
 int main(){
@@ -15,19 +14,28 @@ int main(){
     string e {"Hello"};
     string f {"World"};
 
-    maximum(a, b) << endl;  //int type deduced 
-    maximum(c, d) << endl;  // double typr deduced
-    maximum(e, f) << endl;  // string type deduced
+    // type deduction — compiler figures out T from the arguments automatically
+    cout << "max int    : " << maximum(a, b) << endl;   // int deduced
+    cout << "max double : " << maximum(c, d) << endl;   // double deduced
+    cout << "max string : " << maximum(e, f) << endl;   // string deduced
 
-    maximum<double>(c,d);   // here we are explicitly telling wewant double
-    maximum<double>(a,c);   // works even if parameter are different type
-    maximum<double>(a,e);   // ERRROR : cant convert string to double
+    // explicit type argument — you tell the compiler which type to use
+    cout << "explicit double : " << maximum<double>(c, d) << endl;
 
+    // works even if arguments are different types — int gets converted to double
+    cout << "int + double    : " << maximum<double>(a, c) << endl;
+
+    // ERROR: can't convert string to double — uncomment to see the error
+    // maximum<double>(a, e);
 
     return 0;
 }
 
-// template definition
 template <typename T> T maximum(T a, T b){
     return (a > b) ? a : b;
 }
+
+// summary:
+// type deduction   = compiler infers T from what you pass — most common usage
+// explicit argument = you write maximum<double>(...) to force a specific type
+// useful when arguments are mixed types and you need to control the conversion
