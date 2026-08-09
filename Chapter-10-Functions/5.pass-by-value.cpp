@@ -25,3 +25,6 @@ void say_age(int age){
 
 
 // this is pass by value 
+
+// if you check & of age inside function and outside function you will find out 
+// both address are different 
