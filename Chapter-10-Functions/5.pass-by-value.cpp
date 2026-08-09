@@ -1,3 +1,7 @@
+// pass by value = the function receives a COPY of the argument
+// changes inside the function do not affect the original variable
+
+#include <iostream>
 using namespace std;
 
 void say_age(int age);
@@ -5,26 +9,23 @@ void say_age(int age);
 int main(){
     int age {23};
 
-    cout<< "age before " << age << endl;
+    cout << "age before : " << age << endl;
     say_age(age);
-    cout<< "age after " << age << endl;
+    cout << "age after  : " << age << endl;
 
     return 0;
-    
 }
 
 void say_age(int age){
     ++age;
-    cout << "hello! you are "<< age << " years old "<< endl;
-// changing copy of age here will not change original age that is in main 
+    cout << "hello! you are " << age << " years old" << endl;
+    // age here is a copy — incrementing it doesn't touch the original in main
 }
 
-// output : age before 23
-//          hello! you are 24 years old 
-//          age after 23
+// output:
+// age before : 23
+// hello! you are 24 years old
+// age after  : 23   <-- original unchanged
 
-
-// this is pass by value 
-
-// if you check & of age inside function and outside function you will find out 
-// both address are different 
+// if you print &age inside the function and &age in main you'll see two different addresses
+// that confirms they are two separate copies in memory

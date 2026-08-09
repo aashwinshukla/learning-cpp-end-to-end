@@ -1,3 +1,7 @@
+// pass by pointer = the function receives the ADDRESS of the argument
+// dereferencing the pointer inside the function changes the original variable
+
+#include <iostream>
 using namespace std;
 
 void say_age(int* age);
@@ -5,21 +9,19 @@ void say_age(int* age);
 int main(){
     int age {23};
 
-    cout<< "age before " << age << endl;
-    say_age(&age);
-    cout<< "age after " << age << endl;
+    cout << "age before : " << age << endl;
+    say_age(&age);   // passing the address of age
+    cout << "age after  : " << age << endl;
 
     return 0;
-    
 }
 
 void say_age(int* age){
-    ++(*age);
-    cout << "hello! you are "<< *age << " years old "<< endl;
-// changing age here will change original age as well becuase we used same address to point at a variable
-
+    ++(*age);   // dereference to modify the original value
+    cout << "hello! you are " << *age << " years old" << endl;
 }
 
-// output : age before 23
-//          hello! you are 24 years old 
-//          age after 24
+// output:
+// age before : 23
+// hello! you are 24 years old
+// age after  : 24   <-- original changed because we worked on its address

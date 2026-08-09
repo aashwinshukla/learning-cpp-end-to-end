@@ -1,20 +1,14 @@
-// when we have multiple files in the programwhich inculudes different source and function and you want to use them in one single translation unit
+// when your project grows, you split code across multiple files
+// function definitions go in .cpp files
+// function declarations go in .h (header) files
 
-// lets say file one is called compare.h
-// and the second file is called operations.h
+// to use functions from other files, include their header:
 
-// to use them write the syntax as below 
+// #include <iostream>       <- angle brackets for standard library headers
+// #include "compare.h"      <- quotes for your own project headers
+// #include "operations.h"
 
-#include <iostream>
-#include <strings>
-......
-......//all the required libraries
+// this makes everything declared in those headers available in the current file.
 
-#include "compare.h"
-#include "operations.h"
-
-// this way you will be able to use their context in your 
-// current translation unit
-
-//defination of function can go into a .cpp file 
-// and the function declaration can go in a .h file
+// NOTE: #include <strings> does not exist — the correct header is #include <string>
+// standard string functions are in <cstring> (C-style) or <string> (std::string)

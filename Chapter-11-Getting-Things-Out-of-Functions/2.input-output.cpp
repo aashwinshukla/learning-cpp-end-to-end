@@ -17,4 +17,4 @@ void max_str(const string& input1, const string& input2, string& output){
 // once we return the output we will get our output 
 
 // void doesnt give anything in return but just for the example
-// i used it. 
+// i used it. but since we are also using reference ... the output parameter changes will be seen in the main function original output variable
