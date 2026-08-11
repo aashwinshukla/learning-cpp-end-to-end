@@ -1,6 +1,6 @@
 // Methods to read or modify member variables of a class
 
-class Cylinder(){
+class Cylinder{
     private : 
         double base_radius;
         double height;
@@ -28,7 +28,14 @@ class Cylinder(){
         //.......
 };
 
+int main(){
+    Cylinder cylinder1(2,3);
+    cout << "radius_base : " << cylinder1.get_base_radius()<< endl;
+    return 0;
+
+}
+
 // getter helps us to get stuff from class
 // since member variable are private we need to acesses them this way 
-
+// we will get 0 as output since we have not assigned any value to radius in the private member variabke
 // add more info if possible 
