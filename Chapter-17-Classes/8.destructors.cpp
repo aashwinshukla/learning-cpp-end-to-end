@@ -24,3 +24,22 @@ class Dog {
 };
 
 
+Dog::Dog(){
+    dog_name = "None";
+    dog_breed = "None";
+    dog_age = = new int;   // dynamic memory alloaction
+    *dog_age = 0;
+}
+
+Dog::dog(std::string name_param, std::string breed_param, int age_param);
+{
+    dog_name = name_param;
+    dog_breed = breed_param;
+    dog_age = = new int; // memory allocated on heap
+    *dog_age = age_param;
+}
+
+Dog::~Dog(){
+    delete dog_age;
+    std::cout << "Dog destructor called for " << dog_name << std::endl;
+}
