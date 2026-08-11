@@ -43,3 +43,14 @@ Dog::~Dog(){
     delete dog_age;
     std::cout << "Dog destructor called for " << dog_name << std::endl;
 }
+
+
+// The destructor are called in weird places that may not be obvious
+//          when an object is passed by value to a function 
+//          when a local object is returned from a function 
+//          (for some compilers)
+
+// Other obvious cases are : 
+//          when a local stack object goes out of scope (dies)
+//          when a heap object is released with delete 
+
