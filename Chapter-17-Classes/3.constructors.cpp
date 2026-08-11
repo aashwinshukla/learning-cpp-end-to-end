@@ -16,8 +16,8 @@ class Cylinder{
 
     public : 
         Cylinder (){
-            base_radius = 2.0;          // constructor with no parameter
-            height = 2.0; 
+            base_radius = 1.0;          // constructor with no parameter
+            height = 1.0; 
         };
         
         Cylinder(double radius_param, double height_param ){
@@ -26,7 +26,27 @@ class Cylinder{
         }
 
         double volume(){            
-            return PI * base_radius * height;
+            return PI * base_radius * base_radius * height;
         }    
 
 };
+
+int main(){
+    Cylinder cylinder1;  // Object
+    cout << "Vloume : " << cylinder1.volume() << endl;
+
+    Cylinder cylinder2(2,2);
+    cout << "Volume : "<< cylinder2.volume() << endl;
+    return 0;
+}
+
+
+// the first output will give 
+//Vloume : 3.14
+// and second output will give
+//Volume : 25.12
+ 
+// this is because
+//  1st output took no parameter constructor
+//  and 2nd took with parameter contruct 
+

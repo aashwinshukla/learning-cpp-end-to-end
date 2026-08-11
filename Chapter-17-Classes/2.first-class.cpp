@@ -15,7 +15,7 @@ class Cylinder{
 
     public :                        // next part makes up the behaviour of the class
         double volume(){            // it uses properties to work as function for the class
-            return PI * base_radius * height;
+            return PI * base_radius * base_radius * height;
         }    
 
 };
@@ -23,7 +23,7 @@ class Cylinder{
 // now we can use the Cylinder type we created ourself
 
 int main(){
-    Cylinder cylinder1;
+    Cylinder cylinder1;  // Object
     cout << "Vloume c1 : " << cylinder1.volume() << endl;
 
     cylinder1.base_radius = 3.0;
