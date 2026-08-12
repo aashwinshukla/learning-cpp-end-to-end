@@ -1,42 +1,69 @@
-class Person
-{
-    friend std::ostream& operator<< (std::ostream& out, const Person& person);
-public : 
-    Person();
-    Person(std::string first_name_param, std::string last_name_param);
-    ~Person();
-private : 
-    std::string first_name{"Mysterious"};
-    std::string last_name{"Person"};
+// first inheritance example — Player inherits from Person
+// Player gets all public members of Person without rewriting them
 
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person{
+    friend ostream& operator<<(ostream& out, const Person& person);
+
+    public:
+        Person() = default;
+        Person(string first_name_param, string last_name_param)
+            : first_name{first_name_param}, last_name{last_name_param} {}
+
+        string get_first_name() const { return first_name; }
+        string get_last_name()  const { return last_name;  }
+
+    private:
+        string first_name {"Mysterious"};
+        string last_name  {"Person"};
 };
 
-// so now we can make new classes....
-// #include "person.h"  
-class Person;
+ostream& operator<<(ostream& out, const Person& person){
+    out << "Person: " << person.first_name << " " << person.last_name;
+    return out;
+}
 
-class Player : public person
-{
-    friend std::ostream& operator<< (std::ostream& out, const Player& player);
-public : 
-    Player() = default;
-    Player(std::string game_param);
-    ~Player();
-private : 
-    std::string m_game{"None"};
 
+// Player inherits from Person — note: Person not person (case sensitive)
+class Player : public Person{
+    friend ostream& operator<<(ostream& out, const Player& player);
+
+    public:
+        Player() = default;
+        Player(string game_param) : m_game{game_param} {}
+        Player(string first_name_param, string last_name_param, string game_param)
+            : Person(first_name_param, last_name_param), m_game{game_param} {}
+
+    private:
+        string m_game {"None"};
 };
 
-// now this will have features of his own as well as person class features
-// without writing them again 
+ostream& operator<<(ostream& out, const Player& player){
+    // can't access player.first_name directly — it's private in Person
+    // use getters instead
+    out << "Player: " << player.get_first_name() << " "
+        << player.get_last_name() << " - Game: " << player.m_game;
+    return out;
+}
 
 
-// 1. with public inheritance, derived classes can access and use public members of the base class.
-//    but the derived class cant directly access private members.
+int main(){
+    Person person1("John", "Snow");
+    cout << person1 << endl;   // Person: John Snow
 
-// 2. the same also applies to friends of the derived class.
-//   They have access to private members of derived, 
-//   but dont have access to the base class
+    Player player1("Mario", "Bros", "Football");
+    cout << player1 << endl;   // Player: Mario Bros - Game: Football
 
+    // Player can use Person's public methods
+    cout << "First name : " << player1.get_first_name() << endl;   // Mario
 
-// we can use setters and getters for now to get the private members
+    return 0;
+}
+
+// rules with public inheritance:
+// 1. derived class can use public members of the base class
+//    but CANNOT directly access private members — use getters/setters for that
+// 2. friends of the derived class also cannot access private members of the base class

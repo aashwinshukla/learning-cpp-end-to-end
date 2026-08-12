@@ -1,17 +1,12 @@
-// when we do public inheritance 
-// whatever is public, private, and protected in the main class will
-// stay that way in the derived class as well
+// the access specifier used when inheriting controls how base class members
+// are seen inside the derived class
 
-// we can also do protected inheritance in other word just use 
-// class Player : protected Person
-// here public in the main class becomes priotected 
-// protected stays protected 
-// and private stays private 
+// public inheritance    — public stays public, protected stays protected, private stays private
+// protected inheritance — public becomes protected, protected stays protected, private stays private
+// private inheritance   — public becomes private, protected becomes private, private stays private
 
-// atlast private inheritance just like other inheritance
-// this one here will turn everything in the main class
-// from public, protected, private to private in derived class
+// KEY RULE: private members of the base class are NEVER accessible in derived classes
+//           no matter which inheritance type you use — private always stays private
 
-
-// no matter what access specifer you use 
-// private stays private no matter what 
+// most common is public inheritance — preserves original access levels
+// protected and private inheritance are rare and used for special cases
