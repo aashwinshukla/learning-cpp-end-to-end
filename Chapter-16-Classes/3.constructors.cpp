@@ -1,52 +1,47 @@
-// a special kind of method that is called when an instance of a class is created
-// 1. no return type 
+// constructor = a special method called automatically when an object is created
+// rules:
+// 1. no return type
 // 2. same name as the class
-// 3. can have parameters. Can also have an empty parameter list 
-// 4. Usually used to initiallize member variable of a class 
+// 3. can have parameters or an empty parameter list
+// 4. usually used to initialize member variables
 
 #include <iostream>
-using namespace std; 
+using namespace std;
 
 const double PI {3.14};
 
 class Cylinder{
-    private :
-        double base_radius {1.0};  
-        double height {1.0};        
+    private:
+        double base_radius {1.0};
+        double height {1.0};
 
-    public : 
-        Cylinder (){
-            base_radius = 1.0;          // constructor with no parameter
-            height = 1.0; 
-        };
-        
-        Cylinder(double radius_param, double height_param ){
-            base_radius = radius_param;
-            height = height_param;          // constructor with parameter
+    public:
+        // no-parameter constructor
+        Cylinder(){
+            base_radius = 1.0;
+            height = 1.0;
         }
 
-        double volume(){            
-            return PI * base_radius * base_radius * height;
-        }    
+        // parameterized constructor
+        Cylinder(double radius_param, double height_param){
+            base_radius = radius_param;
+            height = height_param;
+        }
 
+        double volume(){
+            return PI * base_radius * base_radius * height;
+        }
 };
 
 int main(){
-    Cylinder cylinder1;  // Object
-    cout << "Vloume : " << cylinder1.volume() << endl;
+    Cylinder cylinder1;       // calls no-parameter constructor
+    cout << "Volume : " << cylinder1.volume() << endl;   // 3.14
 
-    Cylinder cylinder2(2,2);
-    cout << "Volume : "<< cylinder2.volume() << endl;
+    Cylinder cylinder2(2, 2); // calls parameterized constructor
+    cout << "Volume : " << cylinder2.volume() << endl;   // 25.12
+
     return 0;
 }
 
-
-// the first output will give 
-//Vloume : 3.14
-// and second output will give
-//Volume : 25.12
- 
-// this is because
-//  1st output took no parameter constructor
-//  and 2nd took with parameter contruct 
-
+// cylinder1 used the no-parameter constructor — base_radius = 1, height = 1
+// cylinder2 used the parameterized constructor — base_radius = 2, height = 2

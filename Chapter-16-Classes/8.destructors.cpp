@@ -1,56 +1,59 @@
-// Special methods that are called when an object dies.
-// They are needed when the objects needs to release spme dynamic memory 
-// or for some other kind of clean up.
+// destructor = a special method called automatically when an object is destroyed
+// used to release any dynamic memory the object allocated during its lifetime
+// rules:
+// 1. no return type
+// 2. same name as the class but with ~ in front
+// 3. no parameters
+// 4. only one destructor per class
 
-// Syntax 
+#include <iostream>
+#include <string>
+using namespace std;
 
-class Dog {
-    public : 
-        Dog(std::string name_param, std::string breed_param, int age_param);
-        ~Dog(); //Destructor declared
-                // can also declare and implement in here : syntax commented out below : 
-        
-        /*
-        ~Dog(){
-            delete dog_age;
-            std::cout << "Dog destructor called for " << dog_name << std::endl;
+class Dog{
+    public:
+        Dog() = default;
+        Dog(string name_param, string breed_param, int age_param);
+        ~Dog();   // destructor declaration
 
-        }
-        */
-    private : 
-        std::string dog_name;
-        std::string dog_breed;
-        int * dog_age;
+    private:
+        string dog_name;
+        string dog_breed;
+        int* dog_age {nullptr};
 };
 
-
+// no-parameter constructor
 Dog::Dog(){
-    dog_name = "None";
+    dog_name  = "None";
     dog_breed = "None";
-    dog_age = = new int;   // dynamic memory alloaction
-    *dog_age = 0;
+    dog_age   = new int;   // dynamic memory allocation
+    *dog_age  = 0;
 }
 
-Dog::dog(std::string name_param, std::string breed_param, int age_param);
-{
-    dog_name = name_param;
+// parameterized constructor
+Dog::Dog(string name_param, string breed_param, int age_param){
+    dog_name  = name_param;
     dog_breed = breed_param;
-    dog_age = = new int; // memory allocated on heap
-    *dog_age = age_param;
+    dog_age   = new int;   // memory allocated on heap
+    *dog_age  = age_param;
 }
 
+// destructor — releases heap memory when the object is destroyed
 Dog::~Dog(){
     delete dog_age;
-    std::cout << "Dog destructor called for " << dog_name << std::endl;
+    dog_age = nullptr;
+    cout << "Dog destructor called for " << dog_name << endl;
 }
 
+int main(){
+    Dog dog1("Rex", "Shepherd", 3);
+    Dog dog2("Max", "Labrador", 5);
+    // destructors called automatically when main ends
+    return 0;
+}
 
-// The destructor are called in weird places that may not be obvious
-//          when an object is passed by value to a function 
-//          when a local object is returned from a function 
-//          (for some compilers)
-
-// Other obvious cases are : 
-//          when a local stack object goes out of scope (dies)
-//          when a heap object is released with delete 
-
+// destructors are called when:
+// - a local (stack) object goes out of scope
+// - a heap object is released with delete
+// - an object is passed by value to a function (a copy is made, then destroyed)
+// - a local object is returned from a function (for some compilers)
