@@ -37,3 +37,6 @@ private :
 // 2. the same also applies to friends of the derived class.
 //   They have access to private members of derived, 
 //   but dont have access to the base class
+
+
+// we can use setters and getters for now to get the private members
