@@ -24,3 +24,7 @@ cout << "Dog : " << dog_name << " constructed at " << this << endl;
 
 
 // this is the pointer that points to the object currently getting manipulated
+
+
+// add more things like other way to use it 
+
