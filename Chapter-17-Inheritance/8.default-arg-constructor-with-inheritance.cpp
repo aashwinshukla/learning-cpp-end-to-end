@@ -1,23 +1,23 @@
-// now when we inherit from one class to another how does at the last class does srg constructor are called???
+// when a derived class object is created, constructors are called top-down
+// the base class constructor runs FIRST, then the derived class constructor
 
-// lets get back to our example to person, engineer and civileng 
-// at CivilEng we will see...
+// example with Person -> Engineer -> CivilEng hierarchy:
 
-// person default arg constructor called....
-// Engineer default arg constructor called....
-// CivilEng default arg constructor called....
+// int main(){
+//     CivilEng civil_eng1;
+// }
 
-// this what occurs when..
+// output would be:
+// Person default constructor called
+// Engineer default constructor called
+// CivilEng default constructor called
 
-int main(){
-    CivilEng civil_eng1;
+// destructors run in REVERSE order (bottom-up):
+// CivilEng destructor called
+// Engineer destructor called
+// Person destructor called
 
-    return 0;
-}
-
-// is programmed 
-
-
-// always provide a default constructor for your classes
-// especially if they will be part of an inheritance hierachy
-
+// IMPORTANT: always provide a default constructor for your classes
+// especially when they are part of an inheritance hierarchy
+// if a base class has no default constructor and you don't explicitly call one
+// in the derived class initializer list, it will cause a compile error
