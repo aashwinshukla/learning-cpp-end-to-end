@@ -1,32 +1,39 @@
-// at default the base constructor are not inherited by the derived classes
-//to do so 
+// by default, base class constructors are NOT inherited by derived classes
+// to inherit them, use the 'using' keyword inside the derived class
 
-class Engineer : public Person
-{
-    using Person::Person; // Inheriting the constructor
-friend std::ostream& operator << (std::ostream& out , const Engineer& operand);
-public : 
-    Engineer(const Engineer& source);
-    ~Engineer();
+// class Engineer : public Person {
+//     using Person::Person;   // inherits ALL of Person's constructors
+// };
 
-protected : 
-    int contract_count {999999}; // Default value
+// important rules to know:
+
+// 1. copy constructors are NOT inherited
+//    the compiler will generate an automatic copy constructor for the derived class though,
+//    so you usually won't notice — but it may not copy derived members correctly
+
+// 2. inherited constructors are base constructors
+//    they have no knowledge of the derived class
+//    any member from the derived class will hold junk or whatever default value it was initialized with
+//    eg: contract_count {999999} — that default is used since the inherited constructor can't set it
+
+// 3. constructors are inherited with whatever access specifier they had in the base class
+//    a public constructor in Person stays public in Engineer after inheriting
+
+// 4. you can still add your OWN constructors on top of inherited ones
+//    your custom constructors can properly initialize the derived class members
+
+// 5. inheriting constructors adds confusion — it's not clear which constructor is building the object
+//    recommendation: avoid them unless there is no other option
+
+class Engineer : public Person{
+    using Person::Person;   // inherits Person's constructors
+
+    friend std::ostream& operator<<(std::ostream& out, const Engineer& operand);
+
+    public:
+        Engineer(const Engineer& source);   // copy constructor — not inherited, defined separately
+        ~Engineer();
+
+    protected:
+        int contract_count {999999};   // default — inherited constructors can't set this properly
 };
-
-
-// 1. Copy contsructors are not inherited.
-//    But you wont ususally notice this as the compiler will insert an automatic copy constructor.
-
-// 2. inherited constructor are base constyruxtor 
-//    they have no knowledge of the derived class.
-//    any member from the derived class will just contain junk or whatever default value its initialized with
-
-// 3. Constructors are inherited with whatever access specifier they had in base class
-
-// 4. on top of derived constructors, 
-//    you can add your own that possibly properly initialize derived member variable
-
-// 5. Inheriting construct adds a level of confusion to your code.
-//    its not clear which constructor is building your object.
-//    it is recommended to avoid them and only use this feature if no other option is available
-
