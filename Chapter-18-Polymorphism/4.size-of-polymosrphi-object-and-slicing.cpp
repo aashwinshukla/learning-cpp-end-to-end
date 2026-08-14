@@ -5,6 +5,9 @@ cout << "sizeof(Shape) : "<< sizeof(Shape) << endl;
 cout << "sizeof(Oval) : "<< sizeof(Oval) << endl;
 cout << "sizeof(Circle) : "<< sizeof(Circle) << endl;
 
+// Dynamic binding object will be larger than static 
+// you check that by commenting out virtual 
+
 // object slicing 
 
 Shape shape1("Shape1");
