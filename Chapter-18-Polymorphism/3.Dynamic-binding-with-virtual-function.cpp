@@ -72,4 +72,3 @@ shape_ptr->draw();
 // now no static binding 
 // now compiler will not see the type of the pointer
 // but the type of the object that the pointer is managing
-
