@@ -1,77 +1,73 @@
-// Managing derived objects in memory through base pointers or references and
-// getting the right method called on the base pointer or reference 
+// static binding = compiler decides which function to call based on the POINTER TYPE
+// not the actual object — this is the default behavior without virtual
 
-class Shape
-{
-public: 
-    Shape() = default;
-    Shape(const string& description);
-    ~Shape();
+#include <iostream>
+#include <string>
+using namespace std;
 
-    void draw() const{
-        cout << "Shape::draw() called. Drawing "<< m_description << endl;
+class Shape{
+    public:
+        Shape() = default;
+        Shape(const string& description) : m_description{description} {}
+        ~Shape(){}
 
-    }
-protected : 
-    string m_description("");
+        void draw() const{
+            cout << "Shape::draw() called. Drawing " << m_description << endl;
+        }
+    protected:
+        string m_description {""};
 };
 
-class Oval : public Shape
-{
-public : 
-    Oval() = default;
-    Oval(double x_radius, double y_radius, const string& description);
-    ~Oval();
+class Oval : public Shape{
+    public:
+        Oval() = default;
+        Oval(double x_radius, double y_radius, const string& description)
+            : Shape(description), m_x_radius{x_radius}, m_y_radius{y_radius} {}
+        ~Oval(){}
 
-    void draw() const{
-        cout<< "Oval::draw() called. Drawing " << m_description << " with m_x_radius : "<< m_x_radius << " and m_y_radius : " << m_y_radius << endl;
-
-    }
-private : 
-    double m_x_radius(0.0);
-    double m_y_radius(0.0);
+        void draw() const{
+            cout << "Oval::draw() called. Drawing " << m_description
+                 << " x_radius: " << m_x_radius << " y_radius: " << m_y_radius << endl;
+        }
+    private:
+        double m_x_radius {0.0};
+        double m_y_radius {0.0};
 };
 
+class Circle : public Oval{
+    public:
+        Circle() = default;
+        Circle(double radius, const string& description)
+            : Oval(radius, radius, description), m_radius{radius} {}
+        ~Circle(){}
 
-class Circle ; public Oval
-{
-public : 
-    Circle() = default;
-    Circle(double radius, const string& description);
-    ~Circle();
-
-    void draw() const{
-        cout<< "Circle::draw() called. Drawing : " << m_description << " with radius : "<< m_radius << endl;
-    }
+        void draw() const{
+            cout << "Circle::draw() called. Drawing " << m_description
+                 << " radius: " << m_radius << endl;
+        }
+    private:
+        double m_radius {0.0};
 };
 
-// now that we have our hierchy 
-// Static binding with base class pointer
+int main(){
+    Shape  shape1("Shape1");
+    Oval   oval1(2.0, 3.0, "Oval1");
+    Circle circle1(3.3, "Circle1");
 
-Shape shape1("Shape1");
-Oval shape2(2.0, 3.0, "Oval1");
-Circle shape3(3.3, "Circle1");
+    cout << "Calling methods through pointers (static binding):" << endl;
 
-cout << endl;
-cout << " Calling methods through pointers : static binding " << endl;
+    Shape* shape_ptr = &shape1;
+    shape_ptr->draw();   // Shape::draw() — correct
 
-Shape* shape_ptr = &shape1;
-shape_ptr->draw();  // wish for Shape::draw() to be called
+    shape_ptr = &oval1;
+    shape_ptr->draw();   // Shape::draw() — WRONG, expected Oval::draw()
 
-shape_ptr = &oval1;
-shape_ptr->draw();  // wish for Oval::draw() to be called
+    shape_ptr = &circle1;
+    shape_ptr->draw();   // Shape::draw() — WRONG, expected Circle::draw()
 
-shape_ptr = &circle1;
-shape_ptr->draw();  // wish for Circle::draw() to be called
+    // all three call Shape::draw() because the pointer type is Shape*
+    // compiler looks at the pointer type, not the actual object — this is static binding
+    // to fix this we need virtual functions (dynamic binding)
 
-// but when we compile and run on all three Shape::draw() is called and this what we dont want 
-// and this called static binding
-
-// the compiler just looks at the pointer type to decide what draw() version to call.
-// it sees Shape* and calls Shape::draw().
-// This is static binding in action!
-
-// same will happen in the class reference as well.
-
-// we need polymorphism to deal with more function.
-
+    return 0;
+}

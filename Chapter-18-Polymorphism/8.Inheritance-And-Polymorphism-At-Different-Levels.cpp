@@ -1,24 +1,33 @@
-// we cvan make polymorphism at different level of inheritance 
-// and not just strictly at base class
+// polymorphism doesn't have to be done only at the top base class level
+// you can create polymorphism at any level of the hierarchy
 
-// if we have a base class animal 
-// and then derived class called land and air
-// and then in air you add derived classes like nocturnal and Diurnal
-// and then in land you add derived classes like mammals and not mammals 
+// example hierarchy:
+// Animal (base)
+//   └── Bird  : public Animal
+//         ├── Bat  : public Bird
+//         └── Owl  : public Bird
+//   └── Land  : public Animal
+//         ├── Dog  : public Land
+//         └── Cat  : public Land
 
-// here you can make base class polymophism, ie animal polymorphism 
-// but also make land and air polymorphism as well
+// you can use Animal polymorphism to call breath() on all of them:
+// Animal* animals[]{&bat1, &owl1, &dog1, &cat1};
+// for(const auto& animal : animals){
+//     animal->breath();
+// }
 
-Animal * animals[]{&bat1, &owl1, &dog1, &cat1};
+// but you can also use Bird polymorphism to call fly() on just birds:
+// Bird* birds[]{&bat1, &owl1};
+// for(const auto& bird : birds){
+//     bird->fly();
+// }
 
-for(const auto& animal : animals){
-    animal->breath();
-}
+// and Land polymorphism for land animals:
+// Land* land_animals[]{&dog1, &cat1};
+// for(const auto& land : land_animals){
+//     land->run();
+// }
 
-Bird* birds[]{&bat1, &owl1};
-
-for(const &auto bird : birds){
-    bird->fly();
-}
-
-// and so on for land animals, we can craete respective polymorphism 
+// this is the power of layered polymorphism —
+// you can group and call behavior at whichever level makes sense for your situation
+// virtual functions at each level enable the right method to be called

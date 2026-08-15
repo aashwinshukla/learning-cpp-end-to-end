@@ -1,74 +1,84 @@
-// explain virtual here 
-// to make things static to dynamic lets edit few things 
+// virtual = tells the compiler to use dynamic binding for this method
+// now the compiler looks at the ACTUAL OBJECT TYPE at runtime, not the pointer type
+// this enables polymorphism
 
-class Shape
-{
-public: 
-    Shape() = default;
-    Shape(const string& description);
-    ~Shape();
+#include <iostream>
+#include <string>
+using namespace std;
 
-    virtual void draw() const{  //added virtual keyword
-        cout << "Shape::draw() called. Drawing "<< m_description << endl;
+class Shape{
+    public:
+        Shape() = default;
+        Shape(const string& description) : m_description{description} {}
+        ~Shape(){}
 
-    }
-protected : 
-    string m_description("");
+        virtual void draw() const{   // virtual — enables dynamic binding
+            cout << "Shape::draw() called. Drawing " << m_description << endl;
+        }
+    protected:
+        string m_description {""};
 };
 
-class Oval : public Shape
-{
-public : 
-    Oval() = default;
-    Oval(double x_radius, double y_radius, const string& description);
-    ~Oval();
+class Oval : public Shape{
+    public:
+        Oval() = default;
+        Oval(double x_radius, double y_radius, const string& description)
+            : Shape(description), m_x_radius{x_radius}, m_y_radius{y_radius} {}
+        ~Oval(){}
 
-    virtual void draw() const{  // added virtual in oval as well
-        cout<< "Oval::draw() called. Drawing " << m_description << " with m_x_radius : "<< m_x_radius << " and m_y_radius : " << m_y_radius << endl;
-
-    }
-private : 
-    double m_x_radius(0.0);
-    double m_y_radius(0.0);
+        virtual void draw() const{   // virtual in derived class too (good practice)
+            cout << "Oval::draw() called. Drawing " << m_description
+                 << " x_radius: " << m_x_radius << " y_radius: " << m_y_radius << endl;
+        }
+    private:
+        double m_x_radius {0.0};
+        double m_y_radius {0.0};
 };
 
+class Circle : public Oval{
+    public:
+        Circle() = default;
+        Circle(double radius, const string& description)
+            : Oval(radius, radius, description), m_radius{radius} {}
+        ~Circle(){}
 
-class Circle ; public Oval
-{
-public : 
-    Circle() = default;
-    Circle(double radius, const string& description);
-    ~Circle();
-
-    virtual void draw() const{  // here as well
-        cout<< "Circle::draw() called. Drawing : " << m_description << " with radius : "<< m_radius << endl;
-    }
+        virtual void draw() const{
+            cout << "Circle::draw() called. Drawing " << m_description
+                 << " radius: " << m_radius << endl;
+        }
+    private:
+        double m_radius {0.0};
 };
 
-Shape shape1("Shape1");
-Oval shape2(2.0, 3.0, "Oval1");
-Circle shape3(3.3, "Circle1");
+// helper functions using polymorphism
+void draw_shape(const Shape& shape){
+    shape.draw();   // calls the right version based on actual object type
+}
 
-cout << "Polymorphism (dynamic Binding) with reference : " << endl;
-draw_shape(shape1);
-draw_shape(oval1);
-draw_shape(circle1);
+void draw_shape_through_ptr(Shape* shape_ptr){
+    shape_ptr->draw();   // same — dynamic binding through pointer
+}
 
-cout << endl;
-cout << "Polymorphism (dynamic Binding) with pointers : " << endl;
+int main(){
+    Shape  shape1("Shape1");
+    Oval   oval1(2.0, 3.0, "Oval1");
+    Circle circle1(3.3, "Circle1");
 
-draw_shape_through_ptr(&shape1);
-draw_shape_through_ptr(&oval1);
-draw_shape_through_ptr(&circle1);
+    cout << "Polymorphism with references:" << endl;
+    draw_shape(shape1);    // Shape::draw()
+    draw_shape(oval1);     // Oval::draw()
+    draw_shape(circle1);   // Circle::draw()
 
-// you dont have access to non virtual functions through polymorphism 
-cout << endl;
-cout << " No access to non virtual functions through polymorphism "<< endl;
-Shape* shape_ptr = &oval1
-// shape_ptr->get_x_rad();
-shape_ptr->draw();
+    cout << "\nPolymorphism with pointers:" << endl;
+    draw_shape_through_ptr(&shape1);    // Shape::draw()
+    draw_shape_through_ptr(&oval1);     // Oval::draw()
+    draw_shape_through_ptr(&circle1);   // Circle::draw()
 
+    // non-virtual functions are NOT accessible through polymorphism
+    cout << "\nNo access to non-virtual functions through a base pointer:" << endl;
+    Shape* shape_ptr = &oval1;
+    // shape_ptr->get_x_rad();   // ERROR — get_x_rad() not declared in Shape
+    shape_ptr->draw();            // fine — draw() is virtual
 
-// now no static binding 
-// now compiler will not see the type of the pointer
-// but the type of the object that the pointer is managing
+    return 0;
+}
