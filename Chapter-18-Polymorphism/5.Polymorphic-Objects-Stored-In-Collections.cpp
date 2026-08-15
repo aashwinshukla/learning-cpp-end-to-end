@@ -22,3 +22,12 @@ for(Shape s : shapes3){
 const Shape& shape2[] {circle1, oval1, circle2, ......}
 // if you try like above syntax the code will not even pass compilation because it is wrong 
 // because we cant store reference in a collection
+
+
+Shape* shapes3[]{&circle1, &oval1, &circle2, .....};
+// this will work fine 
+// this is fundamental of polymosrphism 
+// using base pointer to manage derived objects 
+
+// we can also use smart pointer which is nothing but wrapper on the raw pointer 
+shared_ptr<Shape> shape4[]{make_shared<Circle>(12.2, "Circle4"), make_shared<Oval>(10.0,20.0,"Oval4")};
