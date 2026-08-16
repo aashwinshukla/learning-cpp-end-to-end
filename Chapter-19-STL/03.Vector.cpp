@@ -68,3 +68,17 @@ v.erase(v.begin()+2, v.begin()+4)
 // where begin()+2 is starting point and is included 
 // whereas begin()+4 is end point which is not included and will not get deleted 
 
+
+
+// now what if we want to insert something 
+vector<int>v(2, 100);
+v.insert(v.begin(), 300);  // this will change vector from {100, 100} to {300, 100, 100}
+v.insert(v.begin()+1, 2, 10);  // this will change vector from {300, 100, 100} to {300, 10, 10, 100, 100}
+
+v.size;  // will give us number of element in the vector v
+v.pop_back();  // removal of a last element from the vector v
+v1.swap(v2);  // swap the elemnet of both the vector with each other
+
+v.clear();  // erase the entire vector 
+v.empty();  // tells true / false if our vector is empty or not 
+
