@@ -32,3 +32,6 @@
 // #include <set>       — unique elements (sorted)
 // #include <algorithm> — sort, find, count etc.
 // #include <iterator>  — iterator utilities
+
+
+// we will be using #include <bits/stdc++.h> to get all library at the same time 
