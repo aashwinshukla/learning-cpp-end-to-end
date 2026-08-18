@@ -173,6 +173,19 @@ One interface, many implementations. The cornerstone of OOP.
 - Pure virtual functions and abstract classes
 - Abstract classes as interfaces
 
+### Chapter 19 — STL (Standard Template Library)
+Ready-made containers and algorithms built into C++ — no need to write your own data structures.
+- What the STL is — containers, algorithms, iterators
+- `pair` — storing two values under one name, nested pairs, arrays of pairs
+- `vector` — dynamic array, iterators, insert, erase, push/pop, swap
+- `list` — doubly linked list, push/pop from both ends
+- `stack` — LIFO, push, pop, top
+- `queue` — FIFO, push, pop, front, back; `priority_queue` (max heap and min heap)
+- `set`, `multiset`, `unordered_set` — unique/sorted/unsorted collections
+- `map`, `multimap`, `unordered_map` — key-value pairs sorted/unsorted
+- Sorting with `std::sort`, custom comparators, descending order
+- Other built-in algorithms — `count`, `find`, `accumulate`, `reverse`, `unique`, `binary_search`, `lower_bound`, `upper_bound`, `next_permutation`, `rotate`
+
 ---
 
 ## How to Compile and Run Any File
