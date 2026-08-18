@@ -1,84 +1,82 @@
-// the first container which will learn is vector
+// vector = a dynamic array — size grows and shrinks automatically
+// unlike a regular array, you don't need to know the size upfront
 
-vector<int> v;
-// vector declaration
+#include <iostream>
+#include <vector>
+using namespace std;
 
-v.push_back(1);
-v.emplace_back(2);
-// explain what these do 
+int main(){
 
-vector<pair<int, int>> vec;
+    // declaration
+    vector<int> v;
 
-v.push_back{1, 2};
-v.emplace_back(1, 2);
-// explain this as well
+    // push_back  — adds element at the end, creates a copy
+    // emplace_back — adds element at the end, constructs it in place (slightly faster)
+    v.push_back(1);
+    v.emplace_back(2);
+    // v = {1, 2}
 
-vector<int> v(5,100);  // this means {100, 100, 100, 100, 100} , ie 100 is 5 times
-vector<int>(5);  // this 5 instences of either zero or garbage value 
+    // vector of pairs
+    vector<pair<int, int>> vec;
+    vec.push_back({1, 2});     // needs curly braces
+    vec.emplace_back(1, 2);    // emplace_back constructs directly — no braces needed
 
-vector<int> v1(5, 20);
-vector<int> v2(v1);
-// v2 will have similar collection of 5 20's as v1
+    // initializing with a size and default value
+    vector<int> v1(5, 100);    // {100, 100, 100, 100, 100}
+    vector<int> v2(5);         // {0, 0, 0, 0, 0} — default initialized to 0
+    vector<int> v3(v1);        // copy of v1 — {100, 100, 100, 100, 100}
 
+    // iterators
+    vector<int> nums {20, 34, 56, 67};
 
-vector<int>::iterator it = v.begin();
-it++;
-cout<< *(it) << " ";
-// if collection is {20, 34, 56, 67}
-// then we will get 34 since we did it++ then print
+    vector<int>::iterator it = nums.begin();   // points to first element (20)
+    it++;
+    cout << *it << endl;   // 34
 
-it = it+2;
-cout << *(it) <<" ";
-// here assuming we did it++ and then it = it + 2
-// we will get 67
+    it = it + 2;
+    cout << *it << endl;   // 67 — moved 2 more positions forward
 
-vector<int>::iterator it = v.end();
-// end points to memory after the last element or the place after the last element
-vector<int>::iterator it = v.rend();
-// reverse end
-vector<int>::iterator it = v.rbegin();
-// reverse begin
+    // end()    — points to memory AFTER the last element (not the last element itself)
+    // rbegin() — reverse begin (points to last element)
+    // rend()   — reverse end (points before the first element)
 
-cout << v.back() << " ";
-// last index element 
+    cout << nums.back() << endl;   // 67 — last element
 
-// to print the vector 
-// method 1: 
-for (vector<int>::iterator it = v.begin(); it != v.end(); it++){
+    // printing a vector — 3 ways
+    // method 1: explicit iterator
+    for(vector<int>::iterator it = nums.begin(); it != nums.end(); it++){
+        cout << *it << " ";
+    }
+    cout << endl;
 
+    // method 2: auto iterator
+    for(auto it = nums.begin(); it != nums.end(); it++){
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    // method 3: range-based for (cleanest)
+    for(auto val : nums){
+        cout << val << " ";
+    }
+    cout << endl;
+
+    // erase — removes element at a position (position is included)
+    vector<int> e {10, 20, 30, 40, 50};
+    e.erase(e.begin() + 1);              // removes index 1 (20) → {10, 30, 40, 50}
+    e.erase(e.begin() + 1, e.begin() + 3); // removes index 1 and 2, index 3 NOT included → {10, 50}
+
+    // insert
+    vector<int> ins(2, 100);             // {100, 100}
+    ins.insert(ins.begin(), 300);        // {300, 100, 100}
+    ins.insert(ins.begin() + 1, 2, 10); // inserts 10 twice at index 1 → {300, 10, 10, 100, 100}
+
+    // other useful methods
+    cout << e.size() << endl;   // number of elements
+    e.pop_back();               // removes last element
+    v1.swap(v3);                // swaps contents of two vectors
+    e.clear();                  // removes all elements
+    cout << e.empty() << endl;  // 1 (true) — vector is now empty
+
+    return 0;
 }
-
-// method 2: 
-for (auto it = v.begin(); it != v.end(); it++ ){
-
-}
-
-// method 3: 
-for (auto it : v){
-
-}
-
-
-//now to delete an element we use erase
-
-v.erase(v.begin()+1);
-// this will remove any elemnet on +1 of the element index 0
-v.erase(v.begin()+2, v.begin()+4)
-// now this tells the range of removal of element 
-// where begin()+2 is starting point and is included 
-// whereas begin()+4 is end point which is not included and will not get deleted 
-
-
-
-// now what if we want to insert something 
-vector<int>v(2, 100);
-v.insert(v.begin(), 300);  // this will change vector from {100, 100} to {300, 100, 100}
-v.insert(v.begin()+1, 2, 10);  // this will change vector from {300, 100, 100} to {300, 10, 10, 100, 100}
-
-v.size;  // will give us number of element in the vector v
-v.pop_back();  // removal of a last element from the vector v
-v1.swap(v2);  // swap the elemnet of both the vector with each other
-
-v.clear();  // erase the entire vector 
-v.empty();  // tells true / false if our vector is empty or not 
-

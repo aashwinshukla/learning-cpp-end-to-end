@@ -1,18 +1,23 @@
-// using pair we can but multiple input in pair 
+// pair = stores exactly two values of possibly different types under one name
+// part of <utility> (included automatically with most STL headers)
 
-pair<int, int> p = {1,3};
-// now 1, 3 are stored inside the p
+#include <iostream>
+#include <utility>
+using namespace std;
 
-cout << p.first << " " << p.second;
-// we can access them using above statement 
+int main(){
 
-// we can also nest pairs
-pair <int, pair<int, int>> p = {1, {3, 4}};
-// now we have more than two elements stored inside pair 
-// to access them 
-cout << p.first << " " << p.second.second << " " << p.second.first;
+    // basic pair
+    pair<int, int> p = {1, 3};
+    cout << p.first << " " << p.second << endl;   // 1 3
 
-// we can also have them in an array 
-pair<int, int> arr[] = {{1, 2}, {3, 4}, {5, 6}};
-// to access them 
-cout << arr[1].second;
+    // nested pair — more than two elements
+    pair<int, pair<int, int>> p2 = {1, {3, 4}};
+    cout << p2.first << " " << p2.second.first << " " << p2.second.second << endl;   // 1 3 4
+
+    // array of pairs
+    pair<int, int> arr[] = {{1, 2}, {3, 4}, {5, 6}};
+    cout << arr[1].second << endl;   // 4 — second element of the pair at index 1
+
+    return 0;
+}
