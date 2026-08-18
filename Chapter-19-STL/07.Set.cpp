@@ -16,3 +16,10 @@ st.insert(3);  // {1, 2, 3, 4}
 // begin(), end(), rbegin(), rend(), size(), 
 // empty(), and swap() are same as others
 
+// now lets see multiset 
+// the only differnce from the set is that it doesnt store unique
+
+ms.insert(2);  // {2}
+ms.insert(2);  // {2, 2}
+ms.insert(2);  // {2, 2, 2}
+// but keeps the sorted property 
