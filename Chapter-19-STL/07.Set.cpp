@@ -23,3 +23,8 @@ ms.insert(2);  // {2}
 ms.insert(2);  // {2, 2}
 ms.insert(2);  // {2, 2, 2}
 // but keeps the sorted property 
+
+// at last we have got unordered set 
+// here it doesnt have upper_bound and lower_bound function 
+// it is also unsorted but only stores unique value 
+// all other functions work 
